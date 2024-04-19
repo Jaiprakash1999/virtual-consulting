@@ -47,8 +47,9 @@ const DoctorAppointments = () => {
                   >
                     <div
                       className={
-                        ongoingAppointment &&
-                        "bg-green-400 p-1.5 flex justify-between"
+                        ongoingAppointment
+                          ? "bg-green-400 p-1.5 flex justify-between"
+                          : "bg-red-500 p-1.5 flex justify-between"
                       }
                     >
                       <div>{date}</div>
@@ -84,7 +85,7 @@ const DoctorAppointments = () => {
                     className="bg-white pb-2 shadow m-3 rounded "
                   >
                     <div
-                      className={ongoingAppointment && "bg-red-300 p-1.5 flex"}
+                      className={!ongoingAppointment && "bg-red-500 p-1.5 flex"}
                     >
                       Appointment time : {startTime} to {endTime}
                     </div>

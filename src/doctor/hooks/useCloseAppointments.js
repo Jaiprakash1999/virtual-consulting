@@ -9,6 +9,7 @@ const useCloseAppointments = () => {
     try {
       const res = await axios.patch(
         `${REACT_APP_API_KEY}/api/appointment/closeAppointment/${id}`,
+        {}, // Ensure an empty object is passed as the second parameter if no data is needed for the request body
         { withCredentials: true }
       );
       console.log(res.data, "close");
