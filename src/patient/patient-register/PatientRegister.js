@@ -1,21 +1,27 @@
 import React, { useState } from "react";
+import usePatientRegister from "./usePatientRegister";
 
 const PatientRegister = ({
   setPatientRegister = () => {},
   setDoctorRegister = () => {},
 }) => {
   const [patientData, setPatientData] = useState({
-    fullName: "",
-    mobileNumber: "",
+    name: "",
+    phoneNo: "",
     password: "",
+    email: "",
   });
   const handleInputChange = (e) => {
     const { value, name } = e.target;
     setPatientData({ ...patientData, [name]: value });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+
+  const { getPatientRegister } = usePatientRegister({
+    patientData,
+    setPatientRegister,
+    setDoctorRegister,
+  });
+
   return (
     <div className="bg-white border m-4 shadow rounded">
       <div className="flex p-2 justify-between text-lg">
@@ -32,16 +38,20 @@ const PatientRegister = ({
         </button>
       </div>
       <hr></hr>
-      <form onSubmit={handleSubmit} className="p-2">
+      <div className="flex justify-center items-center pt-3">
+        <h1>Register as patient</h1>
+      </div>
+      <form onSubmit={(e) => getPatientRegister(e)} className="px-6">
         <div className="my-2 w-full">
           <label className="">Full Name</label>
           <input
             type="text"
-            name="fullName"
-            value={patientData.fullName}
+            name="name"
+            value={patientData.name}
             className="w-full p-1.5 border rounded-md mt-1 focus:outline-none focus:border-indigo-500"
             onChange={handleInputChange}
             required
+            placeholder="Enter your full name"
           />
         </div>
 
@@ -49,8 +59,21 @@ const PatientRegister = ({
           <label>Mobile Number</label>
           <input
             type="text"
-            name="mobileNumber"
-            value={patientData.mobileNumber}
+            name="phoneNo"
+            value={patientData.phoneNo}
+            className="w-full p-1.5 border rounded-md mt-1 focus:outline-none focus:border-indigo-500"
+            onChange={handleInputChange}
+            placeholder="Enter your mobile number"
+            required
+          />
+        </div>
+        <div className="my-2">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={patientData.email}
             className="w-full p-1.5 border rounded-md mt-1 focus:outline-none focus:border-indigo-500"
             onChange={handleInputChange}
             required
@@ -61,6 +84,7 @@ const PatientRegister = ({
           <input
             type="text"
             name="password"
+            placeholder="Enter a strong password"
             className="w-full p-1.5 border rounded-md mt-1 focus:outline-none focus:border-indigo-500"
             value={patientData.password}
             onChange={handleInputChange}
