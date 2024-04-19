@@ -30,7 +30,7 @@ const useGetAllDoctors = () => {
 
       setIsDoctorListLoading(false);
     }
-  }, [id]);
+  }, [id, category]);
 
   useEffect(() => {
     getAllDoctors();

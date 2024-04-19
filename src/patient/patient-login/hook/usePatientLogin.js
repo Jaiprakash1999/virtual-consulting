@@ -18,6 +18,7 @@ const usePatientLogin = ({ patientData }) => {
         username: patientData.userName,
         password: patientData.password,
       });
+      console.log(res, "res login");
       navigate("/patientDashboard");
     } catch (error) {
       console.error(error, "error");

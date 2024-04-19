@@ -44,7 +44,6 @@ const VideoCall = () => {
       showScreenSharingButton: true,
       showTextChat: true,
       showUserList: true,
-      showUserList: true,
       maxUsers: 2,
       layout: "Auto",
       showLayoutButton: false,
