@@ -6,10 +6,24 @@ const useGetPatientProfile = () => {
   const [patientProfile, setPatientProfile] = useState();
 
   const getPatientProfile = useCallback(async () => {
-    const res = await axios.get(`${REACT_APP_API_KEY}/api/patient/getProfile`, {
-      withCredentials: true,
-    });
-    setPatientProfile(res.data);
+    console.log("Cookies profile:", document.cookie);
+    const token = localStorage.getItem("authToken");
+    try {
+      const res = await axios.get(
+        `${REACT_APP_API_KEY}/api/patient/getProfile`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // {
+        //   withCredentials: true,
+        // }
+      );
+      setPatientProfile(res.data);
+    } catch (error) {
+      console.log(error, "err");
+    }
   }, []);
 
   useEffect(() => {

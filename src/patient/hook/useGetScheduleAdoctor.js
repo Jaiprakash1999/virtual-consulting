@@ -13,10 +13,16 @@ const useGetScheduleAdoctor = () => {
   const [isTimeSlotLoading, setIsTimeSlotLoading] = useState(true);
 
   const getScheduleAdoctor = useCallback(async () => {
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/schedule/getSchedule/${id}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setTimeSlot(res.data);
       setIsTimeSlotLoading(false);

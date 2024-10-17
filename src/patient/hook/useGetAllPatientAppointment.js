@@ -6,10 +6,17 @@ const useGetAllPatientAppointment = () => {
   const [patientAppointments, setPatientAppointments] = useState([]);
 
   const getAllPatientAppointments = useCallback(async () => {
+    console.log("Cookies app:", document);
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/appointment/patient/allAppointments`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setPatientAppointments(res.data);
     } catch (error) {

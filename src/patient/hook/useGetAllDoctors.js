@@ -18,9 +18,15 @@ const useGetAllDoctors = () => {
         : "allDoctorsWithSpeciality";
 
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/speciality-symptoms/${doctorsAPI}/${id}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
 
       setDoctorList(res.data);

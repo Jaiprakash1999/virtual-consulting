@@ -18,10 +18,16 @@ const useBookedAppointmentForPatient = ({
   const bookAppointment = async (e, id) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.post(
         `${REACT_APP_API_KEY}/api/appointment/patient/create`,
         { timeSlotId: id, concern: cencern },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       console.log(res, "res");
       setConcern("");

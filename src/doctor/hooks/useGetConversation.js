@@ -6,10 +6,16 @@ const useGetConversation = ({ conversationId }) => {
   const [conversationMessage, setConversationMessage] = useState({});
 
   const getAllConversations = useCallback(async () => {
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/conversation/${conversationId}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setConversationMessage(res.data);
     } catch (error) {

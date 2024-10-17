@@ -9,9 +9,15 @@ const useDoctorLogin = ({ doctorData }) => {
   const getDoctorLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${REACT_APP_API_KEY}/api/doctor/login`, doctorData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${REACT_APP_API_KEY}/api/doctor/login`,
+        doctorData
+        // {
+        //   withCredentials: true,
+        // }
+      );
+      const token = res.data;
+      localStorage.setItem("authToken", token);
       navigate("/doctorDashboard");
     } catch (error) {
       console.log(error, "error");

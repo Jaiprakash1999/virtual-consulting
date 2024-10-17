@@ -7,10 +7,15 @@ const useGetAllSpeciality = () => {
   const [isSpecialityLoading, setIsSpecialityLoading] = useState(true);
 
   const getAllSpeciality = useCallback(async () => {
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/speciality-symptoms/findAllSpeciality`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setSpecialityData(res.data);
       setIsSpecialityLoading(false);

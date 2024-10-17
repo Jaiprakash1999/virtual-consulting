@@ -18,7 +18,10 @@ const usePatientLogin = ({ patientData }) => {
         username: patientData.userName,
         password: patientData.password,
       });
-      console.log(res, "res login");
+      console.log(res.data, "res login");
+      const token = res.data;
+      localStorage.setItem("authToken", token);
+      console.log("Cookies login:", document.cookie);
       navigate("/patientDashboard");
     } catch (error) {
       console.error(error, "error");

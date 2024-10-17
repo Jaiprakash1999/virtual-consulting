@@ -24,8 +24,8 @@ const VideoCall = () => {
     const roomId = "123";
     const userId = randomID(5); // Generate a unique user ID
     const userName = randomID(5);
-    const AppID = 1144359365;
-    const ServerSecret = "8ee6f6b6b5fa49b88f2559aa6635d9c7";
+    const AppID = 1595389214;
+    const ServerSecret = "5ee48bc6818141f976112c686cb0f26a";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       AppID,
       ServerSecret,
@@ -50,7 +50,7 @@ const VideoCall = () => {
       sharedLinks: [
         {
           name: "Copy link",
-          url: `http://localhost:3001/videoCall`,
+          url: `http://localhost:3000/videoCall`,
         },
       ],
       scenario: {

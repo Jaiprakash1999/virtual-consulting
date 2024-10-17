@@ -10,10 +10,16 @@ const useGetAllAppointments = () => {
   const navigate = useNavigate();
 
   const getAllAppointments = useCallback(async () => {
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/appointment/doctor/allAppointments`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setAllApointments(res.data);
       setIsAppointmentsLoading(false);
@@ -25,9 +31,15 @@ const useGetAllAppointments = () => {
 
   const getDoctorProfile = useCallback(async () => {
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/doctor/getProfile`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setDoctorProfile(res.data);
     } catch (error) {

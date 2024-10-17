@@ -74,8 +74,14 @@ const DoctorAppointments = () => {
           })}
 
           {allAppointments.map((appointments) => {
-            const { ongoingAppointment, patient, id, startTime, endTime } =
-              appointments || {};
+            const {
+              ongoingAppointment,
+              patient,
+              id,
+              startTime,
+              date,
+              endTime,
+            } = appointments || {};
             const { email, name, phoneNo } = patient || {};
             return (
               <div key={id}>
@@ -87,7 +93,7 @@ const DoctorAppointments = () => {
                     <div
                       className={!ongoingAppointment && "bg-red-500 p-1.5 flex"}
                     >
-                      Appointment time : {startTime} to {endTime}
+                      Appointment time : {startTime} to {endTime} ({date})
                     </div>
                     <div className="p-2">
                       <label className="font-semibold ">Patient details</label>

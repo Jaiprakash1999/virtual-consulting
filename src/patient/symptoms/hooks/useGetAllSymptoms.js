@@ -7,11 +7,14 @@ const useGetAllSymptoms = () => {
   const [isSymptomsLoading, setIsSymptomsLoading] = useState(true);
 
   const getAllSymptoms = useCallback(async () => {
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
         `${REACT_APP_API_KEY}/api/speciality-symptoms/findAllSymptom`,
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       setSymtomsData(res.data);

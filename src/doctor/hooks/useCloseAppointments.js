@@ -7,10 +7,16 @@ const useCloseAppointments = () => {
   const navigate = useNavigate();
   const closeAppointments = async (id) => {
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.patch(
         `${REACT_APP_API_KEY}/api/appointment/closeAppointment/${id}`,
         {}, // Ensure an empty object is passed as the second parameter if no data is needed for the request body
-        { withCredentials: true }
+        // { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(res.data, "close");
       toast.success("Appointment close successfully !");

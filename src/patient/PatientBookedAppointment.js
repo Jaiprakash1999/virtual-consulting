@@ -34,8 +34,8 @@ const PatientBookedAppointment = () => {
         <h1>Your Booked appointments</h1>
       </div>
       <div className="pt-12">
-        {patientAppointments.map((appointment) => {
-          const { startTime, endTime, doctor } = appointment || {};
+        {patientAppointments.reverse().map((appointment) => {
+          const { startTime, endTime, doctor, date } = appointment || {};
           const { name, phoneNo, rating, email, totalConsults, address } =
             doctor || {};
           return (
@@ -44,7 +44,7 @@ const PatientBookedAppointment = () => {
               className="bg-white m-4 pb-1.5 rounded"
             >
               <div className="mx-3.5 pt-2">
-                Scheduled At: {startTime} to {endTime}
+                Scheduled At: {date}, {startTime} to {endTime}
               </div>
               <div className="bg-white shadow m-4 rounded">
                 <h1 className="bg-red-200 p-1">Doctor details</h1>

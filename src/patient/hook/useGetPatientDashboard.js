@@ -7,9 +7,17 @@ const useGetPatientDashboard = () => {
   const [symptomsData, setSymtomsData] = useState([]);
 
   const getAllSpeciality = useCallback(async () => {
+    console.log("Cookies speciality:", document.cookie);
+    const token = localStorage.getItem("authToken");
     try {
       const res = await axios.get(
-        `${REACT_APP_API_KEY}/api/speciality-symptoms/findAllSpeciality`
+        `${REACT_APP_API_KEY}/api/speciality-symptoms/findAllSpeciality`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        // { withCredentials: true }
       );
       setSpecialityData(res.data);
     } catch (error) {
